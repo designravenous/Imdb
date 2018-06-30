@@ -19,3 +19,23 @@
     height: 40px;
     border-radius: 10px;
 }
+.results{
+    width: 200px;
+    border-bottom: 2px;
+    background-color: beige;
+}
+span{
+    font-size: 18px;
+}
+img{
+    width:200px;
+}
+.pic{
+    
+    width: 300px;
+    
+}
+.cubeOne{
+width: 50%;
+background-color: black;
+}
