@@ -7,9 +7,11 @@
         <script src="main.js"></script>
     </head>
     <body>
-        <div class="searcher">
-        <input placeholder="Enter Movie" id="input"></input> <button id="button">Find Movie</button>
+        <div class="searcher"><table><tr></tr><td>
+        <input placeholder="Enter Movie/Series" id="input"></td></input> <td><button id="button" onclick="onTheClick()">Find Movie</button></td><td><p id="errormsg">ERROR</p></td>
+    </tr></table>
     </div>
+    
     <table>
         <tr>
             <td>
@@ -29,6 +31,25 @@
     </div>
 </div>
 </td>
+</tr>
+<tr>
+    <td>
+            <div class="cubeTwo">
+                    <div class="resultsOne">
+                        <ul>
+                        <li><p>Title</p><span id="titleOne"></span></li>
+                        <li><p>Year</p><span id="yearOne"></span></li>
+                        <li><p>imdbID</p><span id="identitetOne"></span></li>
+                        <li><p>Type</p><span id="typeOfOne"></span></li>
+                    </ul>
+                    </div>
+    </td><td>
+    <div class="picOne">
+            <img id="imageOne" />
+        </div>
+    </div>
+        </td>
+    </td>
 </tr>
 </table>
     </body>
