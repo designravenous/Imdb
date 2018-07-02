@@ -25,6 +25,7 @@ function sendRequester(url){
   xmlReq.onreadystatechange = function(){
       if (xmlReq.readyState == 4 && xmlReq.status == 200){
           var datas = JSON.parse(xmlReq.responseText);
+
           var movie = {};
           movie.title = datas.Search[0].Title;
           movie.year = datas.Search[0].Year;
@@ -45,6 +46,10 @@ function sendRequester(url){
           else if (datas.Search[1].Poster == "N/A"){
             movie.posterOne= "http://designravenous.com/no-image-found.jpg";
           }
+          //mapping 10 results in consoleLog
+         for(var i = 0; i<10;i++){
+             console.log("Title: "+ datas.Search[i].Title + " Year " + datas.Search[i].Year);
+         }
          
           console.log(resp);
           updater(movie);
