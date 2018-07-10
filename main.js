@@ -40,8 +40,6 @@ function sendRequester(url){
             var listElement = document.createElement('ul');
             listContainer.appendChild(listElement);
 
-          //mapping 10 results in consoleLog
-
          for(var i = 0; i < a;i++){
 
             var listItem = document.createElement('li');
@@ -73,8 +71,29 @@ function sendRequester(url){
           console.log(resp);
           console.log(amount_of_results);
           console.log(url);  
+          
+         //ERROR handling for 
+      }  else if(xmlReq.readyState == 4 && xmlReq.status != 200){
+          var xmlStatus = xmlReq.status;
+          switch(xmlStatus){
+              case 400:
+              errormsg.innerHTML = "400 Bad Request";
+              break;
+              case 401:
+              errormsg.innerHTML = "401 Unauthorized";
+              break;
+              case 403:
+              errormsg.innerHTML = "403 Forbidden";
+              break;
+              case 404:
+              errormsg.innerHTML = "404 Not Found";
+              break;
+              case 500:
+              errormsg.innerHTML = "500 Internal Server Error";
+              break;
 
-      }  //testa att börja här!
+          }
+      }
   }
         xmlReq.open("GET", url, true);
 
