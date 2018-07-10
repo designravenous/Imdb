@@ -1,99 +1,100 @@
-
 //  http://www.omdbapi.com/?apikey=xxxxxxxx&s=s%C3%B6karna&r=json
 
 var API = "?apikey=xxxxxxxx";
-var title;
-var year;
-var iD;
-var type;
-var poster;
+
 var url;
+
 var errormsg;
-var titleOne;
-var yearOne;
-var iDOne;
-var typeOne;
-var posterOne;
+
+var listContainer = document.createElement('div');
 
 function updateOfURL(film){
+
     url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json";
+
     sendRequester(url);
+
 }
 
 function sendRequester(url){
+
     var xmlReq = new XMLHttpRequest();
+
   xmlReq.onreadystatechange = function(){
+
       if (xmlReq.readyState == 4 && xmlReq.status == 200){
+
           var datas = JSON.parse(xmlReq.responseText);
+            
+          listContainer.innerHTML=" ";
 
-          var movie = {};
-          movie.title = datas.Search[0].Title;
-          movie.year = datas.Search[0].Year;
-          movie.iD = datas.Search[0].imdbID;
-          movie.type = datas.Search[0].Type;
-          movie.poster = datas.Search[0].Poster;
-          movie.titleOne = datas.Search[1].Title;
-          movie.yearOne = datas.Search[1].Year;
-          movie.iDOne = datas.Search[1].imdbID;
-          movie.typeOne = datas.Search[1].Type;
-          movie.posterOne =datas.Search[1].Poster;
           errormsg.innerHTML = " "; 
-          var resp = datas.Response;
 
-          if (datas.Search[0].Poster == "N/A"){
-            movie.poster= "http://designravenous.com/no-image-found.jpg";
-        }
-          else if (datas.Search[1].Poster == "N/A"){
-            movie.posterOne= "http://designravenous.com/no-image-found.jpg";
-          }
-          //mapping 10 results in consoleLog
-         for(var i = 0; i<10;i++){
-             console.log("Title: "+ datas.Search[i].Title + " Year " + datas.Search[i].Year);
-         }
-         
-          console.log(resp);
-          updater(movie);
-          console.log(url);  
+          var resp = datas.Response;
+          var amount_of_results = datas.totalResults;
+          var a = amount_of_results;
           
-      }
-      
+
+            //tester for https://getbutterfly.com/generate-html-list-from-javascript-array/
+            document.getElementsByTagName('body')[0].appendChild(listContainer);
+            var listElement = document.createElement('ul');
+            listContainer.appendChild(listElement);
+
+          //mapping 10 results in consoleLog
+
+         for(var i = 0; i < a;i++){
+
+            var listItem = document.createElement('li');
+            var listItem1 = document.createElement('li');
+            var listItem2 = document.createElement('li');
+            var posterItem = document.createElement('IMG');
+            var br = document.createElement("BR");
+            var brTwo = document.createElement("BR");
+            posterItem.style.width = "200px";
+            listItem.innerHTML = "Title: " + datas.Search[i].Title;
+            listItem1.innerHTML = "Year: " + datas.Search[i].Year;
+            listItem2.innerHTML = "Type: " + datas.Search[i].Type;
+            posterItem.setAttribute("src", datas.Search[i].Poster);
+            posterItem.style.marginBottom ="20px";
+
+            if (datas.Search[i].Poster == "N/A"){
+                posterItem.setAttribute("src", "http://designravenous.com/no-image-found.jpg");
+            }
+
+            listElement.appendChild(listItem);
+            listElement.appendChild(listItem1);
+            listElement.appendChild(listItem2);
+            listElement.appendChild(brTwo);
+            listElement.appendChild(posterItem);
+            listElement.appendChild(br);
+            console.log(posterItem.style.src);
+            
+         }
+          console.log(resp);
+          console.log(amount_of_results);
+          console.log(url);  
+
+      }  //testa att börja här!
   }
         xmlReq.open("GET", url, true);
+
         xmlReq.send();
+
     }
 
     function onTheClick(){
+
         var input = document.getElementById("input");
+
         film = input.value;
+
         updateOfURL(film);
+
     }
 
-function updater(movie){
-    title.innerHTML = movie.title; 
-    year.innerHTML = movie.year;
-    iD.innerHTML = movie.iD;
-    type.innerHTML = movie.type;
-    poster.src = movie.poster;
-    titleOne.innerHTML = movie.titleOne;
-    yearOne.innerHTML = movie.yearOne;
-    typeOne.innerHTML = movie.typeOne;
-    posterOne.src = movie.posterOne;
-    iDOne.innerHTML =movie.iDOne;
-}
-
-
 window.onload = function(){
-    title = document.getElementById("title");
-    year = document.getElementById("year");
-    iD = document.getElementById("identitet");
-    type = document.getElementById("typeOf");
-    poster = document.getElementById("image");
+
     errormsg = document.getElementById("errormsg");
-    titleOne = document.getElementById("titleOne");
-    yearOne = document.getElementById("yearOne");
-    iDOne = document.getElementById("identitetOne");
-    typeOne = document.getElementById("typeOfOne");
-    posterOne = document.getElementById("imageOne");
 
     var film = "star wars";
     console.log(film);
