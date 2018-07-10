@@ -1,65 +1,130 @@
 /* for error msg in the searchfield*/
+
 #errormsg{
+
     margin-left: 20px;
+
     margin-top:45px;
+
     color: red;
+
 }
+
 /* search block*/
+
 .searcher{
+
     width: 100%;
+
     height: 100px;
+
     background-color:grey;
+
     border-bottom: 2px solid Black;
+
     
+
 }
+
 /* input field*/
+
 #input{
+
     margin-top:30px;
+
     margin-left:40px;
+
     height: 40px;
+
     width:170px;
+
     border-radius: 10px;
+
     font-size: 14px;
+
     border-top: 2px;
+
     border-left: 2px;
+
     border-bottom: 2px;
 
+
+
 }
+
 #button{
+
     margin-top:30px;
+
     margin-left:20px;
+
     height: 40px;
+
     border-radius: 10px;
+
 }
+
+
 
 span{
+
     font-size: 14px;
-}
-img{
-    width:150px;
-    margin-left: 20px;
-}
-.pic{
-    
-    width: 100px;  
-}
-.picOne{
-    width: 100px;
-   
-}
-.cubeOne{
-width: 100%;
-border-bottom: 2px solid Black;
-border-bottom-left-radius: 10px;
 
 }
-.cubeTwo{
-    width:100%;
-    border-bottom: 2px solid Black;
-    border-bottom-left-radius: 10px;
-   
+
+img{
+
+    width:150px;
+
+    margin-left: 20px;
+
 }
+
+.pic{
+
+    
+
+    width: 100px;  
+
+}
+
+.picOne{
+
+    width: 100px;
+
+   
+
+}
+
+.cubeOne{
+
+width: 100%;
+
+border-bottom: 2px solid Black;
+
+border-bottom-left-radius: 10px;
+
+
+
+}
+
+.cubeTwo{
+
+    width:100%;
+
+    border-bottom: 2px solid Black;
+
+    border-bottom-left-radius: 10px;
+
+   
+
+}
+
 li{
-    font-size: 10px;
+
+    font-size: 15px;
+
     font-weight: bold;
+   
+
 }
