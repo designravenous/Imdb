@@ -9,11 +9,21 @@ var errormsg;
 var listContainer = document.createElement('div');
 
 function updateOfURL(film){
-
-    url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json";
-
+    var e = document.getElementById("selec").value;
+    console.log(e);
+    switch(e){
+        case "Movies":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=movie";
+        break;
+        case  "all":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json";
+        break;
+        case "Series":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=series";
+        break;
+    }
+    
     sendRequester(url);
-
 }
 
 function sendRequester(url){
@@ -55,6 +65,7 @@ function sendRequester(url){
             posterItem.setAttribute("src", datas.Search[i].Poster);
             posterItem.style.marginBottom ="20px";
 
+
             if (datas.Search[i].Poster == "N/A"){
                 posterItem.setAttribute("src", "http://designravenous.com/no-image-found.jpg");
             }
@@ -68,10 +79,9 @@ function sendRequester(url){
             console.log(posterItem.style.src);
             
          }
-          console.log(resp);
-          console.log(amount_of_results);
-          console.log(url);  
           
+          
+
          //ERROR handling for 
       }  else if(xmlReq.readyState == 4 && xmlReq.status != 200){
           var xmlStatus = xmlReq.status;
