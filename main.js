@@ -45,7 +45,7 @@ function sendRequester(url){
           var a = amount_of_results;
           
 
-            //tester for https://getbutterfly.com/generate-html-list-from-javascript-array/
+            
             document.getElementsByTagName('body')[0].appendChild(listContainer);
             var listElement = document.createElement('ul');
             listContainer.appendChild(listElement);
