@@ -1,3 +1,10 @@
+/*EVENTUELL LÖSNING
+            https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
+            document.getElementsByTagName('body')[0].appendChild(tbl);
+            tbl.appendChild(row);
+            row.appendChild(listContainer);
+            listContainer.appendChild(listElement);
+            */
 //  http://www.omdbapi.com/?apikey=xxxxxxxx&s=s%C3%B6karna&r=json
 
 var API = "?apikey=xxxxxxxx";
