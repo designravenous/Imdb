@@ -160,7 +160,29 @@ var typeValue;
 
 function updateOfURL(film){
     var e = document.getElementById("selec").value;
+    var year = document.getElementById("Year").value;
+    console.log(year);
     console.log(e);
+    if (year != "Year"){
+    switch(e){
+        case "Movies":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=movie" + "&y=" + year;
+        typeValue = "Movie";
+        break;
+        case  "all":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&y=" + year;
+        typeValue = "all";
+        break;
+        case "Series":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=series"  + "&y=" + year;
+        typeValue = "Series";
+        break;
+        case "Game":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=game" + "&y=" + year;
+        typeValue = "Game";
+        break;
+    }
+} else if (year == "Year"){
     switch(e){
         case "Movies":
         url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=movie";
@@ -174,8 +196,13 @@ function updateOfURL(film){
         url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=series";
         typeValue = "Series";
         break;
-
+        case "Game":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=game";
+        typeValue = "Game";
+        break;
     }
+
+}
     sendRequester(url);
     console.log(url);
 }
@@ -219,6 +246,10 @@ function sendRequester(url){
                     case "Series":
                     errormsg.innerHTML = "Series Not Found";
                     q = 0;
+                    break;
+                    case "Game":
+                    errormsg.innerHTML = "Game Not Found";
+                    break;
                 }
             }
             console.log("titleans: " + titleans);
