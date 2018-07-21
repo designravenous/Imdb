@@ -126,8 +126,6 @@ border-bottom-left-radius: 10px;
 li{
 
     font-size: 15px;
-
-    font-weight: bold;
     list-style: none;
    
 
@@ -136,4 +134,12 @@ li{
     margin-top: 25px;
     margin-left: 20px;
     font-size: 14px;
+}
+#Year{
+    margin-top: 25px;
+    margin-left: 20px;
+    font-size: 14px;
+}
+h2{
+    margin-left:20px;
 }
