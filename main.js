@@ -1,9 +1,153 @@
-/*EVENTUELL LÖSNING
-            https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
-            document.getElementsByTagName('body')[0].appendChild(tbl);
-            tbl.appendChild(row);
-            row.appendChild(listContainer);
-            listContainer.appendChild(listElement);
+/*ALTERNATIV LÖSNING FÖR ATT FÅ DET I TABLE/TABLEBODY/TR/TD
+var cell;
+var cellText;
+var div;
+var list;
+var listItem;
+var listItemOne;
+var listItemTwo;
+var posterItem;
+var url;
+var tbl;
+var API = "?apikey=xxxxxxx";
+var i=0;
+
+
+
+function updateURL(film){
+    var e = document.getElementById("selec").value;
+    console.log(e);
+    switch(e){
+        case "Movies":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=movie";
+        typeValue = "Movie";
+        break;
+        case  "all":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json";
+        typeValue = "all";
+        break;
+        case "Series":
+        url = "http://www.omdbapi.com/" + API + "&s=" + film + "&r=json" + "&type=series";
+        typeValue = "Series";
+        break;
+
+    }
+    console.log(url);
+    generate_table(url);
+}
+
+
+function generate_table(url){
+    
+    var xml = new XMLHttpRequest();
+    xml.onreadystatechange = function(){
+        if (xml.readyState == 4 & xml.status == 200){
+            var data = JSON.parse(xml.responseText);
+        }
+    
+       
+
+    var body =document.getElementsByTagName("body")[0];
+    tbl = document.createElement("table");
+    var tblBody = document.createElement("tbody");
+
+    var valueForSwitch = "forsta";
+
+    for (var i=0; i<2; i++){
+        var row = document.createElement("tr");
+
+        switch(valueForSwitch){
+            case "forsta":
+
+        for(var j=0; j < 4; j++){
+            cell = document.createElement("td");
+            div = document.createElement("div");
+            list = document.createElement("ul");
+            listItem = document.createElement("li");
+            listItemOne = document.createElement("li");
+            listItemTwo = document.createElement("li");
+            posterItem = document.createElement("IMG");
+            
+            listItem.innerHTML = "Title: " + data.Search[j].Title;
+            listItemOne.innerHTML = "Year: " + data.Search[j].Year;
+            listItemTwo.innerHTML = "Type: " + data.Search[j].Type;
+            posterItem.setAttribute("src", data.Search[j].Poster);
+            posterItem.style.marginBottom ="15px";
+            posterItem.style.marginTop ="10px";
+
+            if (data.Search[j].Poster == "N/A"){
+                posterItem.setAttribute("src", "http://designravenous.com/no-image-found.jpg");
+            }
+            
+            list.appendChild(listItem);
+            list.appendChild(listItemOne);
+            list.appendChild(listItemTwo);
+            list.appendChild(posterItem);
+            div.appendChild(list);
+            cell.appendChild(div);
+            row.appendChild(cell);
+            div.style.width="320px";
+            posterItem.style.width = "200px";
+            
+        }
+
+        tblBody.appendChild(row);
+        valueForSwitch = "andra"
+        break;
+        case "andra":
+        for(var q=4; q < 8; q++){
+            cell = document.createElement("td");
+            div = document.createElement("div");
+            list = document.createElement("ul");
+            listItem = document.createElement("li");
+            listItemOne = document.createElement("li");
+            listItemTwo = document.createElement("li");
+            posterItem = document.createElement("IMG");
+            listItem.innerHTML = "Title: " + data.Search[q].Title;
+            listItemOne.innerHTML = "Year: " + data.Search[q].Year;
+            listItemTwo.innerHTML = "Type: " + data.Search[q].Type;
+            posterItem.setAttribute("src", data.Search[q].Poster);
+            posterItem.style.marginBottom ="15px";
+            posterItem.style.marginTop ="10px";
+            
+            list.appendChild(listItem);
+            list.appendChild(listItemOne);
+            list.appendChild(listItemTwo);
+            list.appendChild(posterItem);
+            div.appendChild(list);
+            cell.appendChild(div);
+            row.appendChild(cell);
+            div.style.width="320px";
+            posterItem.style.width = "200px";
+        }
+        tblBody.appendChild(row);
+        valueForSwitch = "tredje";
+        break;
+    }
+    }
+
+    tbl.appendChild(tblBody);
+    body.appendChild(tbl);
+
+}
+xml.open("GET", url, true);
+        xml.send();
+}
+
+function onTheClick(){
+    var input = document.getElementById("input");
+    film = input.value;
+    updateURL(film);
+   
+    
+}
+
+window.onload = function(){
+    errormsg = document.getElementById("errormsg");
+    var film = "star wars";
+    console.log(film);
+    updateURL(film);
+}
             */
 //  http://www.omdbapi.com/?apikey=xxxxxxxx&s=s%C3%B6karna&r=json
 
@@ -11,6 +155,7 @@ var API = "?apikey=xxxxxxxx";
 var url;
 var errormsg;
 var listContainer = document.createElement('div');
+var answer = document.createElement("h2");
 var typeValue;
 
 function updateOfURL(film){
@@ -32,6 +177,7 @@ function updateOfURL(film){
 
     }
     sendRequester(url);
+    console.log(url);
 }
 
 function sendRequester(url){
@@ -44,6 +190,7 @@ function sendRequester(url){
           var datas = JSON.parse(xmlReq.responseText);
 
           listContainer.innerHTML=" ";
+          answer.innerHTML=" ";
           errormsg.innerHTML = " "; 
 
           var resp = datas.Response;
@@ -52,13 +199,13 @@ function sendRequester(url){
 
           var a = amount_of_results;    
 
-            document.getElementsByTagName('body')[0].appendChild(listContainer);
+          document.getElementsByTagName('body')[0].appendChild(listContainer);
 
             var listElement = document.createElement('ul');
 
             listContainer.appendChild(listElement);
             var titleans = datas.Response;
-            var q = 3;
+            var q = 4;
             if (titleans == "False"){
                 switch(typeValue){
                     case "Movie":
@@ -103,6 +250,15 @@ function sendRequester(url){
             listElement.appendChild(br);
             console.log(posterItem.style.src);
          }
+
+         
+         answer.innerHTML = datas.totalResults + " Results Found";
+         document.getElementsByTagName('body')[0].appendChild(answer);
+
+         if(datas.totalResults == undefined){
+             answer.innerHTML = "No Results Found";
+         }
+
 
          //ERROR handling for 
       }  else if(xmlReq.readyState == 4 && xmlReq.status != 200){
