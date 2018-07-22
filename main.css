@@ -5,7 +5,7 @@
     margin-left: 20px;
 
     margin-top:45px;
-
+    font-family: 'Open Sans', sans-serif;
     color: red;
 
 }
@@ -49,8 +49,8 @@
 
     border-bottom: 2px;
     border-style: inset;
-
-
+    
+    font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -64,6 +64,9 @@
 
     border-radius: 10px;
     font-size: 14px;
+    text-align: center;
+    width: 80px;
+    font-family: 'Roboto', sans-serif;
 
 }
 
@@ -127,6 +130,8 @@ li{
 
     font-size: 15px;
     list-style: none;
+    font-family: 'Open Sans', sans-serif;
+    
    
 
 }
@@ -134,6 +139,7 @@ li{
     margin-top: 25px;
     margin-left: 20px;
     font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
 }
 #Year{
     margin-top: 25px;
@@ -142,4 +148,5 @@ li{
 }
 h2{
     margin-left:20px;
+    font-family: 'Roboto', sans-serif;
 }
