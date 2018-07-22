@@ -1,7 +1,4 @@
 
 # Imdb
-web-application in making for IMDB searches for movies
+web-application in making for IMDB searches for movies, series and games.
 
-
-create element list item for each availible Array:
-https://getbutterfly.com/generate-html-list-from-javascript-array/
