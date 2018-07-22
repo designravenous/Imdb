@@ -223,6 +223,7 @@ function sendRequester(url){
           var resp = datas.Response;
 
           var amount_of_results = datas.totalResults;
+          console.log("total results: "+amount_of_results);
 
           var a = amount_of_results;    
 
@@ -232,7 +233,13 @@ function sendRequester(url){
 
             listContainer.appendChild(listElement);
             var titleans = datas.Response;
-            var q = 4;
+            var q = 5;
+            if (amount_of_results < 10){
+                q = amount_of_results;
+            }else{
+                q=10;
+            }
+
             if (titleans == "False"){
                 switch(typeValue){
                     case "Movie":
@@ -240,7 +247,7 @@ function sendRequester(url){
                     q = 0;
                     break;
                     case "all":
-                    errormsg.innerHTML = "No Movie Or Series Found";
+                    errormsg.innerHTML = "No Movie, Series Or Game Found";
                     q = 0;
                     break;
                     case "Series":
@@ -255,7 +262,7 @@ function sendRequester(url){
             console.log("titleans: " + titleans);
 
 
-         for(var i = 0; i < q;i++){
+         for(var i = 0; i <q;i++){
             var listItem = document.createElement('li');
             var listItem1 = document.createElement('li');
             var listItem2 = document.createElement('li');
@@ -263,8 +270,10 @@ function sendRequester(url){
             var br = document.createElement("BR");
             var brTwo = document.createElement("BR");
             posterItem.style.width = "200px";
-            listItem.innerHTML = "Title: " + datas.Search[i].Title;
-            listItem1.innerHTML = "Year: " + datas.Search[i].Year;
+            var boldTitle = datas.Search[i].Title;
+            var boldYear = datas.Search[i].Year;
+            listItem.innerHTML = "Title: " + boldTitle.bold();
+            listItem1.innerHTML = "Year: " + boldYear.bold();
             listItem2.innerHTML = "Type: " + datas.Search[i].Type;
             posterItem.setAttribute("src", datas.Search[i].Poster);
             posterItem.style.marginBottom ="20px";
